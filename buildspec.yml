@@ -16,5 +16,5 @@ phrases:
   post_build:
     commands:
       - echo "Updating lambda Fucntion..."
-      - aws lambda update-function-code --function-name demo-lambda --zip-file fileb://deployment_package.zip
+      - aws lambda update-function-code --function-name github-to-lambda-demo --zip-file fileb://deployment_package.zip
       - echo "DONE!!"
