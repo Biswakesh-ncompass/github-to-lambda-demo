@@ -1,5 +1,5 @@
 version: 0.2
-phrases:
+phases:
   install:
     runtime-versions:
       python: 3.9
@@ -7,14 +7,38 @@ phrases:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt -t lib
   build:
-    comamnds:
-      -echo "Zipping deployment package..."
-      -cd lib
-      -zip -r9 ../deployment_package.zip .
-      -cd ..
-      -zip -g deployment_package.zip lambda_function.py
+    commands:
+      - echo "Zipping deployment package..."
+      - cd aws-layers
+      - zip -r9 lambda-layer.zip .
   post_build:
     commands:
-      - echo "Updating lambda Fucntion..."
-      - aws lambda update-function-code --function-name github-to-lambda-demo --zip-file fileb://deployment_package.zip
+      - echo "Updating lambda layer..."
+      - newarn=$(aws lambda publish-layer-version --layer-name py-layer --description "My Python layer" --zip-file fileb://lambda-layer.zip --compatible-runtimes python3.9 --compatible-architectures "arm64" "x86_64" --output json | jq -r '.LayerVersionArn')
+      - aws lambda update-function-configuration --function-name github-to-lambda --layers []
+      - aws lambda update-function-configuration --function-name github-to-lambda --layers $newarn
       - echo "DONE!!"
+
+
+
+
+# version: 0.2
+# phrases:
+#   install:
+#     runtime-versions:
+#       python: 3.9
+#     commands:
+#       - echo "Installing dependencies..."
+#       - pip install -r requirements.txt -t lib
+#   build:
+#     comamnds:
+#       -echo "Zipping deployment package..."
+#       -cd lib
+#       -zip -r9 ../deployment_package.zip .
+#       -cd ..
+#       -zip -g deployment_package.zip lambda_function.py
+#   post_build:
+#     commands:
+#       - echo "Updating lambda Fucntion..."
+#       - aws lambda update-function-code --function-name github-to-lambda-demo --zip-file fileb://deployment_package.zip
+#       - echo "DONE!!"
