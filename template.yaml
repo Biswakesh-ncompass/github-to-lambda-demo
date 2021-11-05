@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Hello world sam
+  Sample SAM Template for Hello world sam
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  LambdaFunction1:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda_function1/
+      Handler: lambda_function.lambda_handler
+      Runtime: python 3.9
+      Architectures:
+        - x86_64
+  
+  LambdaFunction2:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda_function2/
+      Handler: lambda_function.lambda_handler
+      Runtime: python 3.9
+      Architectures:
+        - x86_64
+      # Policies: AmazonDynamoDBFullAccess
+      # Events:
+      #   HttpPost:
+      #     Type: Api
+      #     Properties:
+      #       Path: '/DynamoDBOperations/DynamoDBManager'
+      #       Method: post
+
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+
+  # RamaLambdaLayer:
+  #   Type: AWS::Serverless::LayerVersion
+  #   Properties:
+  #     CompatibleArchitectures:
+  #       - x86_64
+  #       - arm64
+  #     CompatibleRuntimes:
+  #       - python3.9
+  #     ContentUri:
+  #       Bucket: phonex-rama-lambda-layer-bucket
+  #       Key: lambda-layer.zip
+  #     RetentionPolicy: Retain
