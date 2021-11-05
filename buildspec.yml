@@ -8,7 +8,7 @@ phases:
       - pip install -r requirements.txt -t lib
   build:
     commands:
-      - echo "Zipping deployment package...""
+      - echo "Zipping deployment package..."
       - cd aws-layers
       - zip -r9 lambda-layer.zip .
       - ls -al
@@ -20,6 +20,11 @@ phases:
       - echo "Deploying to Cloud formation"
       - sam deploy --template-file packaged.yaml --stack-name biswa-sam-stack --capabilities CAPABILITY_IAM --region ap-southeast-2
       - echo "Depoy success" 
+
+
+
+
+
 
 
 
