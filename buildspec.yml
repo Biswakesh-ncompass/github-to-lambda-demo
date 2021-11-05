@@ -11,7 +11,7 @@ phases:
       - echo "Zipping deployment package..."
       # - cd aws-layers
       - zip -r9 lambda-layer.zip .
-      - ls -al
+      # - ls -al
       - aws s3 cp lambda-layer.zip s3://biswa-serverless-bucket/lambda-layer.zip
       # - cd ..
       - sam package --template-file template.yaml --s3-bucket biswa-serverless-bucket --output-template-file packaged.yaml
