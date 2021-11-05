@@ -9,7 +9,7 @@ phases:
   build:
     commands:
       - echo "Zipping deployment package..."
-      - cd aws-layers
+      # - cd aws-layers
       - zip -r9 lambda-layer.zip .
       - ls -al
       - aws s3 cp lambda-layer.zip s3://biswa-serverless-bucket/lambda-layer.zip
