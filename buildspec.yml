@@ -13,7 +13,7 @@ phases:
       - zip -r9 lambda-layer.zip .
       - ls -al
       - aws s3 cp lambda-layer.zip s3://biswa-serverless-bucket/lambda-layer.zip
-      - cd ..
+      # - cd ..
       - sam package --template-file template.yaml --s3-bucket biswa-serverless-bucket --output-template-file packaged.yaml
   post_build:
     commands:
