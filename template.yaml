@@ -12,18 +12,30 @@ Resources:
     Properties:
       CodeUri: lambda_function1/
       Handler: lambda_function.lambda_handler
-      Runtime: python 3.9
+      Runtime: python3.9
       Architectures:
         - x86_64
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /func1
+            Method: get
   
   LambdaFunction2:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: lambda_function2/
       Handler: lambda_function.lambda_handler
-      Runtime: python 3.9
+      Runtime: python3.9
       Architectures:
         - x86_64
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /func2
+            Method: get
       # Policies: AmazonDynamoDBFullAccess
       # Events:
       #   HttpPost:
