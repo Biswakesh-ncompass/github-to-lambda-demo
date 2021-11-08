@@ -15,12 +15,7 @@ Resources:
       Runtime: python3.9
       Architectures:
         - x86_64
-      Events:
-        HelloWorld:
-          Type: Api
-          Properties:
-            Path: /func1
-            Method: get
+ 
   
   LambdaFunction2:
     Type: AWS::Serverless::Function
@@ -30,12 +25,6 @@ Resources:
       Runtime: python3.9
       Architectures:
         - x86_64
-      Events:
-        HelloWorld:
-          Type: Api
-          Properties:
-            Path: /func2
-            Method: get
       # Policies: AmazonDynamoDBFullAccess
       # Events:
       #   HttpPost:
